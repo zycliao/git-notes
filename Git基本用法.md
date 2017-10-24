@@ -1,9 +1,9 @@
 ## 基本概念
-版本（commit）
-本地目录/工作区（working tree）
-缓冲区（index file）
-HEAD：当前版本，实际上是一个指针，指向某一版本
-分支（branch）：实际上也是一个指针
+版本（commit）  
+本地目录/工作区（working tree）  
+缓冲区（index file）  
+HEAD：当前版本，实际上是一个指针，指向某一版本  
+分支（branch）：实际上也是一个指针  
 
 ## 准备
 ### 配置
