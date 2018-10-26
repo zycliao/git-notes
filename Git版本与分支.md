@@ -1,50 +1,50 @@
-## �汾����
+## 版本穿梭
 ```
-git reset --hard <�汾>  # ���ش���ͻ�������reset
-git reset --soft <�汾>  # ���ش���ͻ���������reset
-git reset --mixed <�汾>  # ������reset�����ش��벻reset
+git reset --hard <版本>  # 本地代码和缓冲区均reset
+git reset --soft <版本>  # 本地代码和缓冲区均不reset
+git reset --mixed <版本>  # 缓冲区reset，本地代码不reset
 ```
-���а汾��ΪHEADָ�룬HEAD��ʾ��ǰ�汾��HEAD^��ʾǰһ�汾��HEAD~n��ʾǰn�汾  
-HEADҲ���ð汾�Ŵ��棬�汾��ΪSHA1�룬����git log�鿴  
-reset֮��git log�޷��鿴�ð汾֮��汾����Ҫ�鿴δ���汾�ţ���ʹ��git reflog  
-## ��֧
-### ��֧�Ĵ���/�༭
+其中版本可为HEAD指针，HEAD表示当前版本，HEAD^表示前一版本，HEAD~n表示前n版本  
+HEAD也可用版本号代替，版本号为SHA1码，可用git log查看  
+reset之后，git log无法查看该版本之后版本，若要查看未来版本号，可使用git reflog  
+## 分支
+### 分支的创建/编辑
 ```
-git branch  # �鿴��ǰ���з�֧��*�ű�ʾ��ǰ�������ĸ���֧
-git branch <�·�֧��> [<Դ��֧>]  # ����һ���·�֧��ָ��Դ��֧��������Դ��֧����Ĭ���·�ָ֧��ָ��ǰ��֧��HEAD��
-git branch -d <��֧��>  # ɾ����ֻ��ɾ���Ѿ�����ǰ��֧�ϲ��ķ�֧
-git branch -D <��֧��>  # ǿ��ɾ��
-git branch -m <�ɷ�֧> <�·�֧>  # ��������֧��-MΪǿ��
+git branch  # 查看当前所有分支，*号表示当前工作在哪个分支
+git branch <新分支名> [<源分支>]  # 创建一个新分支并指向源分支，若不加源分支，则默认新分支指针指向当前分支（HEAD）
+git branch -d <分支名>  # 删除，只能删除已经被当前分支合并的分支
+git branch -D <分支名>  # 强制删除
+git branch -m <旧分支> <新分支>  # 重命名分支，-M为强制
 ```
-### ��֧�л�
+### 分支切换
 ```
-git checkout <��֧��>  # �л���������֧
-git checkout -b <�·�֧��> [<Դ��֧>]   # �������л����൱��branch+checkout
+git checkout <分支名>  # 切换到其他分支
+git checkout -b <新分支名> [<源分支>]   # 创建并切换，相当于branch+checkout
 ```
-### ��֧�ϲ�
+### 分支合并
 ```
-git merge -m <ע��> <��֧��a>  # ����֧a�ϲ�����ǰ��֧
+git merge -m <注释> <分支名a>  # 将分支a合并到当前分支
 ```
-merge�������������  
-1.����֧��ͬһ��֧���ҷ�֧a�ȵ�ǰ��֧�İ汾���£�merge��ֱ����ɣ���ʾFast-forward������֧��ָ��ͬһcommit��a�����°汾�����������µ�commit  
-2.����֧��ͬһ��֧���ҵ�ǰ��֧�ȷ�֧a�İ汾���£���ʾAlready up-to-date���������κα仯  
-3.����֧����ͬһ��֧��������ͻ����ͻ�ļ�������index�У���Ҫ�ֶ������add��commit������һ���µ�commit����ע����ϢΪmergeʱ��ע����Ϣ�������һ��commit�ģ�����ǰ��ָ֧���µ�commit����֧a��ָ�򲻱䣬�����ڰ汾ͼ�з�֧a��ָcommit���뵱ǰ��֧commit��������ʾ���ѱ��ϲ������԰�ȫ����֧aɾ��  
-### ��֧�ļ�����
-merge�Ὣ����֧��ȫ�ϲ�����ֻ����Ҫ�ϲ������ļ���������������
+merge有若干种情况：  
+1.两分支在同一分支，且分支a比当前分支的版本更新，merge将直接完成，提示Fast-forward，两分支将指向同一commit（a的最新版本），不产生新的commit  
+2.两分支在同一分支，且当前分支比分支a的版本更新，提示Already up-to-date，不产生任何变化  
+3.两分支不在同一分支，产生冲突，冲突文件将放在index中，需要手动解决后add并commit，产生一个新的commit（其注释信息为merge时的注释信息而非最后一次commit的），当前分支指向新的commit，分支a的指向不变，不过在版本图中分支a所指commit会与当前分支commit向连，表示其已被合并，可以安全将分支a删除  
+### 分支文件操作
+merge会将两分支完全合并，若只是想要合并部分文件，可用如下命令
 ```
-git checkout <Դ��֧> [--] <�ļ�>  # ��Դ��֧�е�ָ���ļ����ǵ���ǰworking tree���ļ��������ӵ�index��
+git checkout <源分支> [--] <文件>  # 用源分支中的指定文件覆盖掉当前working tree的文件，并添加到index中
 ```
-### rebase�ϲ�
+### rebase合并
 ```
-git rebase <��֧a>  # ��ʼrebase
-git rebase --continue  # ����rebase
-git rebase --abort  # ��ֹrebase�����˻ص���ʼ֮ǰ״̬
+git rebase <分支a>  # 开始rebase
+git rebase --continue  # 继续rebase
+git rebase --abort  # 终止rebase，将退回到开始之前状态
 ```
-����merge�����3�������  
-1.ͬmerge  
-2.ͬmerge  
-3.�����C0������֧�ֲ棬ͨ��C0-C1-C2-C3����ǰ��֧����AΪ��֧a��ʱ����commit��  
-������rebase��A�󽫲�����commit C1'��ΪA��C1��merge�������ͻ��git add��ͻ�ļ���ʹ��git rebase --continue������  
-C1'�󽫲�����commit C2'��ΪC2��C1'��merge�������ͻ�������  
-C2'�󽫲�����commit C3'��ΪC3��C2'��merge�������ͻ���������rebase  
-��ʱ��ǰ��ָ֧��ָ��C3'����֧aָ�벻�䣨��ָ��A����C1,C2,C3����������C1',C2',C3'��ע����Ϣ��C1,C2,C3��ͬ  
+类似merge会产生3种情况：  
+1.同merge  
+2.同merge  
+3.假设从C0起两分支分叉，通过C0-C1-C2-C3到当前分支，设A为分支a此时所在commit，  
+在输入rebase后，A后将产生新commit C1'，为A与C1的merge，解决冲突后git add冲突文件，使用git rebase --continue继续，  
+C1'后将产生新commit C2'，为C2与C1'的merge，解决冲突后继续，  
+C2'后将产生新commit C3'，为C3与C2'的merge，解决冲突继续后将完成rebase  
+此时当前分支指针指向C3'，分支a指针不变（扔指向A），C1,C2,C3将被抛弃，C1',C2',C3'的注释信息与C1,C2,C3相同  

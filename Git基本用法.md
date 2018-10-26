@@ -1,62 +1,62 @@
-## »ù±¾¸ÅÄî
-°æ±¾£¨commit£©  
-±¾µØÄ¿Â¼/¹¤×÷Çø£¨working tree£©  
-»º³åÇø£¨index file£©  
-HEAD£ºµ±Ç°°æ±¾£¬Êµ¼ÊÉÏÊÇÒ»¸öÖ¸Õë£¬Ö¸ÏòÄ³Ò»°æ±¾  
-·ÖÖ§£¨branch£©£ºÊµ¼ÊÉÏÒ²ÊÇÒ»¸öÖ¸Õë  
+## åŸºæœ¬æ¦‚å¿µ
+ç‰ˆæœ¬ï¼ˆcommitï¼‰  
+æœ¬åœ°ç›®å½•/å·¥ä½œåŒºï¼ˆworking treeï¼‰  
+ç¼“å†²åŒºï¼ˆindex fileï¼‰  
+HEADï¼šå½“å‰ç‰ˆæœ¬ï¼Œå®é™…ä¸Šæ˜¯ä¸€ä¸ªæŒ‡é’ˆï¼ŒæŒ‡å‘æŸä¸€ç‰ˆæœ¬  
+åˆ†æ”¯ï¼ˆbranchï¼‰ï¼šå®é™…ä¸Šä¹Ÿæ˜¯ä¸€ä¸ªæŒ‡é’ˆ  
 
-## ×¼±¸
-### ÅäÖÃ
+## å‡†å¤‡
+### é…ç½®
 ```
 git config --global user.name <username>
 git config --global user.email <email>
 ```
-### ´´½¨×Ô¼ºµÄ²Ö¿â
+### åˆ›å»ºè‡ªå·±çš„ä»“åº“
 ```
 git init 
 ```
-ÔÚÏîÄ¿¸ùÄ¿Â¼ÏÂÊäÈë
-## »ù±¾²Ù×÷
-### Ìá½»commit
+åœ¨é¡¹ç›®æ ¹ç›®å½•ä¸‹è¾“å…¥
+## åŸºæœ¬æ“ä½œ
+### æäº¤commit
 ```
-git add  # ½«Î´ÔÚindex»òmodified¹ıµÄÎÄ¼şÌí¼ÓÖÁindex
-git commit [-m <×¢ÊÍ>]  # Çå¿Õindex£¬ĞÂ½¨commit
-git commit -a  # Ïàµ±ÓÚ×Ô¶¯add modified¹ıµÄÎÄ¼şÈ»ºócommit
+git add  # å°†æœªåœ¨indexæˆ–modifiedè¿‡çš„æ–‡ä»¶æ·»åŠ è‡³index
+git commit [-m <æ³¨é‡Š>]  # æ¸…ç©ºindexï¼Œæ–°å»ºcommit
+git commit -a  # ç›¸å½“äºè‡ªåŠ¨add modifiedè¿‡çš„æ–‡ä»¶ç„¶åcommit
 ```
-### ÒÆ³ıÎÄ¼ş
+### ç§»é™¤æ–‡ä»¶
 ```
 git rm
 ```
-É¾³ıÎÄ¼ş£¬²¢½«É¾³ıÎÄ¼şµÄĞÅÏ¢Ìí¼Óµ½»º´æÇø£¬commitºó±¾µØ²Ö¿âµÄÎÄ¼ş²Å»áÉ¾³ı£¬±¾µØÎÄ¼ş²»»á¸Ä±ä
-### ²é¿´×´Ì¬
+åˆ é™¤æ–‡ä»¶ï¼Œå¹¶å°†åˆ é™¤æ–‡ä»¶çš„ä¿¡æ¯æ·»åŠ åˆ°ç¼“å­˜åŒºï¼Œcommitåæœ¬åœ°ä»“åº“çš„æ–‡ä»¶æ‰ä¼šåˆ é™¤ï¼Œæœ¬åœ°æ–‡ä»¶ä¸ä¼šæ”¹å˜
+### æŸ¥çœ‹çŠ¶æ€
 ```
-git ls-files  # ²é¿´ÓĞÄÄĞ©ÎÄ¼ş´¦ÓÚ°æ±¾¿ØÖÆ×´Ì¬
-git status  # ²é¿´µ±Ç°×´Ì¬
-git log --graph --oneline  # Ê¹ÓÃÍ¼ĞÎ½çÃæ²é¿´°æ±¾±ä¸üÇé¿ö
+git ls-files  # æŸ¥çœ‹æœ‰å“ªäº›æ–‡ä»¶å¤„äºç‰ˆæœ¬æ§åˆ¶çŠ¶æ€
+git status  # æŸ¥çœ‹å½“å‰çŠ¶æ€
+git log --graph --oneline  # ä½¿ç”¨å›¾å½¢ç•Œé¢æŸ¥çœ‹ç‰ˆæœ¬å˜æ›´æƒ…å†µ
 ```
-### ±È½Ï×´Ì¬
+### æ¯”è¾ƒçŠ¶æ€
 ```
-git diff  # ±È½Ïworking treeÓëindex
-git diff --cached  # ±È½ÏHEADÓëindex
-git diff <commit>  # ±È½Ïworking treeÓëÄ³¸öcommit
-git diff --cached <commit>  # ±È½ÏindexÓëÄ³¸öcommit
-git diff <commit1> <commit2>  # ±È½ÏÁ½¸öcommit
-git diff [...] <path>  # Ö®±È½ÏpathÖĞµÄÎÄ¼ş£¬...ÎªÉÏÊö²ÎÊı
+git diff  # æ¯”è¾ƒworking treeä¸index
+git diff --cached  # æ¯”è¾ƒHEADä¸index
+git diff <commit>  # æ¯”è¾ƒworking treeä¸æŸä¸ªcommit
+git diff --cached <commit>  # æ¯”è¾ƒindexä¸æŸä¸ªcommit
+git diff <commit1> <commit2>  # æ¯”è¾ƒä¸¤ä¸ªcommit
+git diff [...] <path>  # ä¹‹æ¯”è¾ƒpathä¸­çš„æ–‡ä»¶ï¼Œ...ä¸ºä¸Šè¿°å‚æ•°
 ```
 
-## GitÖĞµÄ»»ĞĞ·û
-LF£¨0x0a£©ÎªUNIXÖĞ»»ĞĞ·û£¬CRLF£¨0x0d0a£©ÎªwindowsÖĞµÄ»»ĞĞ·û
+## Gitä¸­çš„æ¢è¡Œç¬¦
+LFï¼ˆ0x0aï¼‰ä¸ºUNIXä¸­æ¢è¡Œç¬¦ï¼ŒCRLFï¼ˆ0x0d0aï¼‰ä¸ºwindowsä¸­çš„æ¢è¡Œç¬¦
 ```
-git config --global core.autocrlf true  # Ìá½»Ê±×ª»»ÎªLF£¬¼ì³öÊ±×ª»»ÎªCRLF
-git config --global core.autocrlf input  # Ìá½»Ê±×ª»»ÎªLF£¬¼ì³öÊ±²»×ª»»
-git config --global core.autocrlf false  # Ìá½»¼ì³ö¾ù²»×ª»»
-git config --global core.safecrlf true  # ¾Ü¾øÌá½»°üº¬»ìºÏ»»ĞĞ·ûµÄÎÄ¼ş
-git config --global core.safecrlf false  # ÔÊĞíÌá½»°üº¬»ìºÏ»»ĞĞ·ûµÄÎÄ¼ş
-git config --global core.safecrlf warn  # Ìá½»°üº¬»ìºÏ»»ĞĞ·ûµÄÎÄ¼şÊ±¸ø³ö¾¯¸æ
+git config --global core.autocrlf true  # æäº¤æ—¶è½¬æ¢ä¸ºLFï¼Œæ£€å‡ºæ—¶è½¬æ¢ä¸ºCRLF
+git config --global core.autocrlf input  # æäº¤æ—¶è½¬æ¢ä¸ºLFï¼Œæ£€å‡ºæ—¶ä¸è½¬æ¢
+git config --global core.autocrlf false  # æäº¤æ£€å‡ºå‡ä¸è½¬æ¢
+git config --global core.safecrlf true  # æ‹’ç»æäº¤åŒ…å«æ··åˆæ¢è¡Œç¬¦çš„æ–‡ä»¶
+git config --global core.safecrlf false  # å…è®¸æäº¤åŒ…å«æ··åˆæ¢è¡Œç¬¦çš„æ–‡ä»¶
+git config --global core.safecrlf warn  # æäº¤åŒ…å«æ··åˆæ¢è¡Œç¬¦çš„æ–‡ä»¶æ—¶ç»™å‡ºè­¦å‘Š
 ```
-Ò»°ãÀ´Ëµ£¬¿ÉÊ¹ÓÃ
+ä¸€èˆ¬æ¥è¯´ï¼Œå¯ä½¿ç”¨
 ```
 git config --global core.autocrlf false
 git config --global core.safecrlf true
 ```
-È»ºóÊ¹ÓÃ±¾µØIDEÊÖ¶¯Í³Ò»»»ĞĞ·û
+ç„¶åä½¿ç”¨æœ¬åœ°IDEæ‰‹åŠ¨ç»Ÿä¸€æ¢è¡Œç¬¦
